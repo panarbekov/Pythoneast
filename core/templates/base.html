@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Eat</title>
+</head>
+<body>
+    {{ request.user.username }}
+    <a href="/">Домой</a>
+    <a href="{% url 'all-publications' %}">Публикации</a>
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'create-publication' %}">Создать (обычный)</a>
+        <a href="{% url 'create-form' %}">Создать (via django forms)</a>
+        <a href="{% url 'create-cbv' %}">Создать (via CBV)</a>
+        <a href="{% url 'logout' %}">Выход</a>
+    {% else %}
+        <a href="{% url 'registration' %}">Регистрация</a>
+        <a href="{% url 'login' %}">Вход</a>
+    {% endif %}
+    <hr>
+    {% block page %}
+
+    {% endblock %}
+</body>
+</html>
